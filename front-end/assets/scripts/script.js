@@ -29,6 +29,9 @@ function cadastrarAluno(e) {
         formData.append('desenho', img);
 
         enviarDadosServidor(formData)
-        .then(txt => console.log(`${txt}`));
+        .then(() => {
+            alert('aluno cadastrado com sucesso !');
+            window.location.reload();
+        });
     });
 }
