@@ -1,0 +1,30 @@
+.text-wrapper {
+    cursor: text;
+    position: relative;
+    display: inline-block;
+    width: 1200px;
+    height: 300px;
+    border: 5px solid brown;
+    border-radius: 10px;
+    box-sizing: border-box;
+    background: url('../imgs/line.png');
+    line-height: 25px;
+    overflow-y: auto;
+}
+
+.text-wrapper textarea {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    resize: none;
+    border: none;
+    background: url('../imgs/line.png');
+    line-height: 25px;
+    outline: none;
+    padding: 0 10px;
+    box-sizing: border-box;
+    overflow: hidden;
+    font-size: 20px;
+}

@@ -1,0 +1,247 @@
+@import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    background-color: #2F3F9E;
+    font-family: 'Bubblegum Sans', cursive;
+    overflow-x: hidden;
+}
+
+.container {
+    position: relative;
+    text-align: center;
+}
+
+.cab {
+    position: fixed;
+    background-color: white;
+    top: 0;
+    left: 0;
+    height: 160px;
+    width: 100%;
+    padding-right: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    z-index: 1;
+    box-shadow: 0 0 10px #00000044;
+}
+
+
+.logo .img{
+    margin-left: 20px;
+    object-fit: contain; 
+}
+.menlogo {
+    margin-right: auto;
+}
+.menlogo .menu{
+    background-color: white;
+    display: flex;
+    height: 160px;
+}
+.menlogo img {
+    object-fit: contain;
+}
+.opcoes {
+    display: flex;
+    list-style: none;
+}
+.opcoes li {
+    margin: 0 10px;
+}
+
+.link {
+    font-size: 20px;
+	color:  #2F3F9E;
+	text-decoration: none;
+	padding: 1rem 2rem;
+	transition: all .3s ease-in-out;  
+    border-radius: 10px;
+}
+
+.link:hover{
+    background-color: #2F3F9E;
+    color:  white;
+    transform: scale(1.1);
+}
+
+
+
+
+
+.texto {
+    font-size: 30px;
+    color: white;
+    text-align: center;
+    padding: 30px 0;
+    padding-top: 240px;
+}
+
+#paint-wrapper {
+    margin: 0 auto;
+
+}
+
+.text-wrapper {
+    margin: 0 auto;
+}
+
+.cadastro {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    height: 200px;
+    margin: 0 auto;
+}
+
+footer {
+    display: flex;
+    width: 100%;
+    height: 100px;
+    padding: 100px 0;
+    background-color: rgb(68, 114, 196);
+    color: white;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.link1 {
+    font-size: 20px;
+	color:  white;
+	text-decoration: none;
+	
+	transition: all .5s ease-in-out;  
+    border-radius: 10px;
+}
+
+.link1:hover{
+    background-color: #2F3F9E;
+    color:  white;
+    transform: scale(1.1);
+}
+
+p{
+    color: white;
+    font-size: 20px;
+    padding: 10px;
+}
+
+.titulo{
+    padding: 5px;
+}
+
+.enviar{
+    background-color: white;
+    color: #2F3F9E;
+    padding: 10px;
+}
+.enviar:hover{
+    background-color: #2F3F9E;
+    color: white;
+    border: 2px solid;
+    
+}
+
+.nome{
+    padding: 10px;
+}
+
+#galeria {
+    display: inline-block;
+    width: 1200px;
+    height: 600px;
+}
+
+#galeria img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.cadastro {
+    display: flex;
+    width: 400px;
+    height: 260px;
+    flex-direction: column;
+    background-color: white;
+    border: 5px solid brown;
+    border-radius: 10px;
+    padding: 20px;
+    box-sizing: content-box;
+}
+
+.cadastro input {
+    font-family: 'Bubblegum Sans', cursive;
+}
+
+.cadastro .titulo {
+    text-align: left;
+    color: brown;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.cadastro .data-section {
+    display: inline-block;
+    padding: 5px;
+    text-align: left;
+    margin-top: 10px;
+}
+
+.cadastro .data-section label, .cadastro .data-section input {
+    width: 100%;
+}
+
+.cadastro .data-section label {
+    color: #000000CC;
+    margin-left: 3px;
+}
+
+.cadastro .data-section input {
+    padding: 8px 13px;
+    border: 1px solid #00000033;
+    border-radius: 3px;
+    font-size: 15px;
+    outline: none;
+}
+
+.cadastro input[type=submit] {
+    cursor: pointer;
+    margin-top: auto;
+    margin-left: auto;
+    border: none;
+    color: brown;
+    background-color: white;
+    width: 100px;
+    padding: 10px;
+    box-sizing: content-box;
+    border-radius: 3px;
+    border: 1px solid #00000033;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: 0.2s all;
+}
+
+.cadastro input[type=submit]:hover {
+    background-color: brown;
+    color: white;
+}

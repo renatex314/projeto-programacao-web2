@@ -1,0 +1,122 @@
+#paint-wrapper {
+    display: flex;
+    position: relative;
+    width: 1200px;
+    height: 600px;
+    flex-direction: column;
+}
+
+.panel-wrapper .options-wrapper, .panel-wrapper .colors-wrapper, #canvas-wrapper {
+    background-color: white;
+    flex-grow: 1;
+    box-shadow: 0 0 20px #0000001F;
+    border-radius: 10px;
+    border: 5px solid brown;
+}
+
+.panel-wrapper {
+    display: flex;
+    height: 120px;
+    margin-bottom: 20px;
+}
+
+#canvas-wrapper {
+    flex-grow: 1;
+    position: relative;
+    background-color: white;
+}
+
+#canvas-wrapper canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.panel-wrapper .separator {
+    flex-grow: 0;
+    width: 20px;
+}
+
+.panel-wrapper .colors-wrapper {
+    flex-grow: 0;
+    width: 120px;
+}
+
+.options-list {
+    display: flex;
+    list-style-type: none;
+    align-items: center;
+    height: 100%;
+    padding-left: 20px;
+}
+
+.options-list li {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-basis: 80px;
+    height: 80px;
+    margin: 0 10px;
+    z-index: 0;
+
+    transition: 0.2s all;
+}
+
+.options-list .button {
+    cursor: pointer;
+}
+
+.options-list .button:hover::before, .options-list .button.selected::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px solid #0000001F;
+    border-radius: 100px;
+    z-index: -1;
+    box-sizing: border-box;
+}
+
+.slider-visualizer:before {
+    content: '';
+    display: inline-block;
+    position: relative;
+    width: var(--pencil-size);
+    height: var(--pencil-size);
+    background-color: #777777;
+    border-radius: 100px;
+}
+
+.colors-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.colors-wrapper .color {
+    cursor: pointer;
+    position: relative;
+    margin: 10px 5px;
+    width: 25px;
+    height: 25px;
+    background-color: var(--color);
+    border-radius: 30px;
+}
+
+.colors-wrapper .color:hover::before, .colors-wrapper .color.selecionado::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0.5px solid #00000099;
+    border-radius: 100px;
+    box-sizing: border-box;
+    transform: scale(1.3);
+}
