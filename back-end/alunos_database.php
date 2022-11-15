@@ -1,17 +1,109 @@
 <?php
+    session_start();
+
     require_once 'aluno.php';
     require_once 'database.php';
     
-    class AlunosDatabase extends Database
+    class AlunosCVDatabase 
     {
-        function __construct($hostname, $username, $password, $local_path)
+        private const ARQUIVO_CV = 'alunos.csv';
+        private const HEADERS = array('id', 'nome', 'idade', 'texto_url', 'desenho_url');
+        private $arquivoEndereco;
+
+        function __construct($localPath)
+        {
+            $this->arquivoEndereco = $localPath . AlunosCVDatabase::ARQUIVO_CV;
+            $this->verificarArquivo();
+        }
+
+        function cadastrarAluno($aluno)
+        {  
+            $alunoDados = array(
+                $this->obterNovoID(),
+                $aluno->getNome(),
+                $aluno->getIdade(),
+                $aluno->getTextoURL(),
+                $aluno->getDesenhoURL()
+            );
+            $arquivo = fopen($this->arquivoEndereco, 'a');
+            fputcsv($arquivo, $alunoDados);
+            fclose($arquivo);
+            
+            $this->atualizarNovoID($this->obterNovoID() + 1);
+        }
+
+        function obterNovoID()
+        {
+            $arquivo = fopen($this->arquivoEndereco, 'r');
+            $linha = fgets($arquivo);
+            fclose($arquivo);
+
+            $linha = str_replace('NOVO_ID ', '', $linha);
+            $linha = str_replace('\n', '', $linha);
+
+            return intval($linha);
+        }
+
+        function atualizarNovoID($novoID)
+        {
+            $arquivo = fopen($this->arquivoEndereco, 'r+');
+            fputs($arquivo, "NOVO_ID $novoID" . PHP_EOL);
+            fclose($arquivo);
+        }
+
+        function obterListaAlunos()
+        {
+            $alunos = array();
+            $arquivo = fopen($this->arquivoEndereco, 'r');
+
+            for ($i = 0; $i < 2; $i++) fgets($arquivo);
+            
+            while ($dadosAluno = fgetcsv($arquivo))
+            {
+                array_push($alunos, new Aluno(
+                    $dadosAluno[0],
+                    $dadosAluno[1],
+                    $dadosAluno[2],
+                    $dadosAluno[4],
+                    $dadosAluno[3]
+                ));
+            }
+
+            return $alunos;
+        }
+
+        function limparDatabase()
+        {
+            $novoID = $this->obterNovoID();
+
+            $arquivo = fopen($this->arquivoEndereco, 'w');
+            fputs($arquivo, "NOVO_ID $novoID" . PHP_EOL);
+            fputcsv($arquivo, AlunosCVDatabase::HEADERS);
+            fclose($arquivo);
+        }
+
+        private function verificarArquivo()
+        {   
+            if (!file_exists($this->arquivoEndereco))
+            {
+                $arquivo = fopen($this->arquivoEndereco, 'w');
+                fputs($arquivo, 'NOVO_ID 1' . PHP_EOL);
+                fputcsv($arquivo, AlunosCVDatabase::HEADERS);
+                fclose($arquivo);
+            }
+        }
+    }
+
+    class AlunosSQLDatabase extends Database
+    {
+        function __construct($hostname, $username, $password, $localPath)
         {
             parent::__construct(
                 $hostname, 
                 $username, 
                 $password, 
                 'alunos_database',
-                $local_path . 'database-config.sql'
+                $localPath . 'database-config.sql'
             );
 
             $this->initTables();
@@ -71,6 +163,72 @@
         function obterNovoID()
         {
             return parent::getNewId('alunos');
+        }
+    }
+
+    class AlunosDatabase
+    {
+        const FAIL_ALLOW_TIME = 120;
+        private $database = null;
+
+        function __construct($hostname, $username, $password, $local_path)
+        {
+            $this->localPath = $local_path;
+
+            if (
+                isset($_SESSION['fail-time']) && 
+                time() - $_SESSION['fail-time'] < AlunosDatabase::FAIL_ALLOW_TIME
+            )
+            {
+                $this->database = new AlunosCVDatabase($local_path);
+            }
+            else
+            {
+                try 
+                {
+                    $this->database = new AlunosSQLDatabase($hostname, $username, $password, $local_path);
+                    
+                    if (isset($_SESSION['fail-time']))
+                    {
+                        $this->sincronizarBancos();
+                    }
+
+                    unset($_SESSION['fail-time']);
+                }
+                catch (mysqli_sql_exception $ignored)
+                {
+                    $this->database = new AlunosCVDatabase($local_path);
+                    $_SESSION['fail-time'] = time();
+                }
+            }
+        }
+
+        function cadastrarAluno($aluno)
+        {
+            return $this->database->cadastrarAluno($aluno);
+        }
+
+        function obterListaAlunos()
+        {
+            return $this->database->obterListaAlunos();
+        }
+
+        function obterNovoID()
+        {
+            return $this->database->obterNovoID();
+        }
+
+        function sincronizarBancos()
+        {
+            $this->bancoCV = new AlunosCVDatabase($this->localPath);
+            $alunos = $this->bancoCV->obterListaAlunos();
+
+            foreach ($alunos as $aluno)
+            {
+                $this->database->cadastrarAluno($aluno);
+            }
+
+            $this->bancoCV->limparDatabase();
         }
     }
 ?>

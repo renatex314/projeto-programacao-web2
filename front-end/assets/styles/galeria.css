@@ -1,0 +1,113 @@
+#galeria {
+    position: relative;
+    display: inline-block;
+    width: 1200px;
+    height: 600px;
+    border: 5px solid brown;
+    border-radius: 5px;
+    background-color: white;
+    scroll-margin-top: 200px;
+}
+
+#galeria img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+#galeria img[src="empty"] {
+    display: none;
+}
+
+#galeria p {
+    position: absolute;
+    bottom: 100px;
+    background-color: #a52a2aFF;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 5px;
+}
+
+#galeria .button {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: 50px;
+    height: 50px;
+    border: 3px solid brown;
+    border-radius: 3px;
+    z-index: 1;
+
+    transition: 0.2s all;
+}
+
+#galeria .button::before, #galeria .button::after {
+    content: '';
+    position: absolute;
+    display: inline-block;
+    left: 50%;
+    width: 20px;
+    height: 5px;
+    background-color: brown;
+    transform: translate(-50%, -50%);
+    border-radius: 4px;
+}
+
+#galeria .button::before {
+    top: calc(50% - 6px);
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+#galeria .button::after {
+    top: calc(50% + 6px);
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+#galeria .button:hover {
+    background-color: brown;
+}
+
+#galeria .button:hover::before, #galeria .button:hover::after {
+    background-color: white;
+}
+
+#galeria #prev-button {
+    left: 50px;
+    transform: translateY(-50%) rotate(180deg);
+}
+
+#galeria #next-button {
+    right: 50px;
+    transform: translateY(-50%);
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-out {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+#galeria .fade-out {
+    animation: fade-out 0.5s;
+}
+
+#galeria .fade-in {
+    animation: fade-in 0.5s;
+}

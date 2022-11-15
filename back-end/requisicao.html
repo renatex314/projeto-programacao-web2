@@ -11,9 +11,9 @@
         <script>
             async function post() {
                 let formData = new FormData();
-                formData.append('nome', 'renatex');
+                formData.append('nome', 'renatoasdasdx');
                 formData.append('idade', 18);
-                formData.append('texto', new Blob());
+                formData.append('texto', new Blob(['texto mto doido']));
                 formData.append('desenho', new Blob());
 
                 return await fetch('servidor.php', {
@@ -27,10 +27,10 @@
                 return await fetch('servidor.php', {
                     method: 'GET'
                 })
-                .then(response => response.json());
+                .then(response => response.text());
             }
 
-            post()
+            get()
             .then(json => console.log(json));
         </script>
     </body>

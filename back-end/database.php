@@ -106,6 +106,11 @@
                 $password
             );
 
+            if ($this->connection === false)
+            {
+                return false;
+            }
+
             $this->tables = array();
             $this->databaseName = $databaseName;
 
@@ -158,7 +163,7 @@
         {
             foreach ($this->tables as $table)
             {
-                if ($table->getName() == $tableName) return $table;
+                if ($table->getName() === $tableName) return $table;
             }
 
             return null;
@@ -231,7 +236,7 @@
                 {
                     $row->addColumnData(
                         $columns[$i],
-                        $columns[$i]->getType() == TIPO_TEXTO ? $rowData[$i] : (int) $rowData[$i]
+                        $columns[$i]->getType() === TIPO_TEXTO ? $rowData[$i] : (int) $rowData[$i]
                     );
                 }
 

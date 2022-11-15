@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="assets/styles/style.css">
         <link rel="stylesheet" href="assets/styles/paint.css">
         <link rel="stylesheet" href="assets/styles/textarea.css">
+        <link rel="stylesheet" href="assets/styles/galeria.css">
         <link rel="stylesheet" href="assets/styles/reponsive.css">
         <title>Paint</title>
     </head>
@@ -106,7 +107,7 @@
 
                 <div class="data-section">
                     <label for="nome">Nome</label>
-                    <input id="nome" name="nome" type="text" placeholder="Nome completo" required>
+                    <input id="nome" name="nome" type="text" minlength="2" maxlength="40" placeholder="Nome completo" required>
                 </div>
                 <div class="data-section">
                     <label for="idade">Idade</label>
@@ -128,9 +129,16 @@
 
 
             <div id="galeria">
-                <div class="prev-button"></div>
-                <div class="next-button"></div>
-                <img src="https://www.intel.com.br/content/dam/www/public/us/en/images/embedded/4x3/android_logo-blue-4x3.png.rendition.intel.web.864.486.png" alt="">
+                <div id="prev-button" class="button"></div>
+                <div id="next-button" class="button"></div>
+                <div id="previous-img">
+                    <img src="" alt="">
+                    <p></p>
+                </div>
+                <div id="current-img">
+                    <img src="" alt="">
+                    <p></p>
+                </div>
             </div>
 
             <br>
@@ -164,6 +172,7 @@
         <script src="assets/scripts/paintOptions.js"></script>
         <script src="assets/scripts/paint.js"></script>
         <script src="assets/scripts/textarea.js"></script>
+        <script src="assets/scripts/slideshow.js"></script>
         <script src="assets/scripts/script.js"></script>
     </body>
 </html>
