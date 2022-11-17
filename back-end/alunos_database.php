@@ -220,15 +220,15 @@
 
         function sincronizarBancos()
         {
-            $this->bancoCV = new AlunosCVDatabase($this->localPath);
-            $alunos = $this->bancoCV->obterListaAlunos();
+            $bancoCV = new AlunosCVDatabase($this->localPath);
+            $alunos = $bancoCV->obterListaAlunos();
 
             foreach ($alunos as $aluno)
             {
                 $this->database->cadastrarAluno($aluno);
             }
 
-            $this->bancoCV->limparDatabase();
+            $bancoCV->limparDatabase();
         }
     }
 ?>

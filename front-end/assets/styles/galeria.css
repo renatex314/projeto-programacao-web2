@@ -7,6 +7,48 @@
     border-radius: 5px;
     background-color: white;
     scroll-margin-top: 200px;
+    overflow: hidden;
+}
+
+#galeria .click-message {
+    cursor: pointer;
+    position: absolute;
+    display: flex;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    font-size: 60px;
+    color: white;
+    background-color: #00000055;
+    z-index: 1;
+    text-shadow: 0 0 10px #00000055;
+    opacity: 0;
+
+    transition: 0.2s all;
+}
+
+#galeria .click-message::after {
+    content: 'clique para visualizar';
+}
+
+#galeria:hover .click-message {
+    opacity: 1;
+}
+
+#galeria .button:hover ~ .click-message {
+    opacity: 0;
+}
+
+#galeria #previous-img, #galeria #current-img {
+    position: absolute;
+    display: inline-block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
 #galeria img {
@@ -39,7 +81,7 @@
     height: 50px;
     border: 3px solid brown;
     border-radius: 3px;
-    z-index: 1;
+    z-index: 3;
 
     transition: 0.2s all;
 }
@@ -86,21 +128,21 @@
 
 @keyframes fade-in {
     from {
-        opacity: 0;
+        margin-top: 100%;
     }
 
     to {
-        opacity: 1;
+        margin-top: 0%;
     }
 }
 
 @keyframes fade-out {
     from {
-        opacity: 1;
+        margin-top: 0%;
     }
 
     to {
-        opacity: 0;
+        margin-top: -100%;
     }
 }
 

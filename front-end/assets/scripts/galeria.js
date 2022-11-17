@@ -6,12 +6,14 @@ class Slideshow {
         this._nextButton = wrapperElement.querySelector('#next-button');
         this._prevImgDiv = wrapperElement.querySelector('#previous-img');
         this._currImgDiv = wrapperElement.querySelector('#current-img');
+        this._clickImgDiv = wrapperElement.querySelector('.click-message');
         this._imgsList = [];
         this._currIndex = 0;
         this._prevIndex = 0;
         this._addListeners();
         this.addImg('sem imagens', '');
         this._isEmpty = true;
+        this._onClickListener = null;
         this._updateImg();
     }
 
@@ -38,10 +40,10 @@ class Slideshow {
         prevText.textContent = currText.textContent;
         
         let imgUrl = this._imgsList[this._currIndex].imgSrc;
-        currImg.src = imgUrl == '' ? 'empty' : imgUrl;
+        currImg.src = imgUrl === '' ? 'empty' : imgUrl;
         currText.textContent = this._imgsList[this._currIndex].text;
  
-        if (imgUrl == '') {
+        if (imgUrl === '') {
             prevImg.src = 'empty';
         }
     }
@@ -49,6 +51,15 @@ class Slideshow {
     _addListeners() {
         this._prevButton.addEventListener('click', () => this.swipeLeft());
         this._nextButton.addEventListener('click', () => this.swipeRight());
+        this._clickImgDiv.addEventListener('click', () => {
+            if (this._onClickListener !== null) {
+                this._onClickListener(this._currIndex);
+            }
+        });
+    }
+
+    setOnClickListener(listener) {
+        this._onClickListener = listener;
     }
 
     addImg(text, imgSrc) {

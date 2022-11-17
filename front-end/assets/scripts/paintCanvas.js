@@ -65,21 +65,15 @@ class PaintCanvas {
         canvas.addEventListener('mouseleave', () => this._dadosMouse.mousePressionado = false);
         canvas.addEventListener('mousemove', ({offsetX: x, offsetY: y}) => {
             if (this._dadosMouse.prevMouseX !== null && this._dadosMouse.prevMouseY !== null && this._dadosMouse.mousePressionado) {
-                if (this._dadosPaint.opcaoSelecionada === 'pencil') {
-                    this._drawLine(
-                        this._dadosMouse.prevMouseX, this._dadosMouse.prevMouseY, 
-                        x, y, 
-                        this._dadosPaint.comprimentoLinha, this._dadosPaint.corSelecionada
-                    );
-                }
-
-                if (this._dadosPaint.opcaoSelecionada === 'eraser') {
-                    this._drawLine(
-                        this._dadosMouse.prevMouseX, this._dadosMouse.prevMouseY, 
-                        x, y, 
-                        this._dadosPaint.comprimentoLinha, 'white'
-                    );
-                }
+                this._drawLine(
+                    this._dadosMouse.prevMouseX, this._dadosMouse.prevMouseY, 
+                    x, y, 
+                    this._dadosPaint.comprimentoLinha, 
+                    (
+                        this._dadosPaint.opcaoSelecionada === 'pencil' ?
+                        this._dadosPaint.corSelecionada : 'white'
+                    ) 
+                );
             }
 
             this._dadosMouse.prevMouseX = x;

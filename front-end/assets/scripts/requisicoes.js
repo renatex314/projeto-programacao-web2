@@ -1,10 +1,3 @@
-const URL_SERVIDOR = '../back-end/servidor.php';
-
-let paint = new Paint(document.querySelector('#paint-wrapper'));
-let slideshow = new Slideshow(document.querySelector('#galeria'));
-
-let texto = document.getElementById('texto');
-
 function enviarDadosServidor(formData) {
     return fetch(URL_SERVIDOR, {
         method: 'POST',
@@ -42,4 +35,7 @@ function obterListaAlunos() {
     return obterDadosServidor();
 }
 
-obterListaAlunos().then(lista => lista.forEach(aluno => slideshow.addImg(aluno.nome, aluno.desenhoURL)));
+function obterTextoAluno(textoURL) {
+    return fetch(textoURL)
+    .then(response => response.text());
+}

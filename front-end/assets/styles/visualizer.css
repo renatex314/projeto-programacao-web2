@@ -1,0 +1,138 @@
+.visualizer-wrapper {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #00000088;
+    z-index: 10;
+    opacity: 1;
+
+    transition: 0.2s all;
+}
+
+.visualizer-wrapper.transicao {
+    opacity: 0;
+}
+
+.visualizer-wrapper.escondido {
+    display: none;
+}
+
+.visualizer-wrapper #visualizer {
+    position: relative;
+    display: flex;
+    width: 1500px;
+    height: 620px;
+    background-color: white;
+    border: 10px solid brown;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #00000044;
+    text-align: center;
+}
+
+.visualizer-wrapper #visualizer .img-wrapper {
+    flex-grow: 0;
+    position: relative;
+    display: flex;
+    width: 1010px;
+    border-right: 10px solid brown;
+}
+
+.visualizer-wrapper #visualizer .img-wrapper img {
+    display: inline-block;
+    object-fit: contain;
+    width: 100%;
+}
+
+.visualizer-wrapper #visualizer .info-wrapper {
+    position: relative;
+    flex-grow: 1;
+    flex-basis: 300px;
+    overflow-y: auto;
+}
+
+.visualizer-wrapper #visualizer .info-wrapper::before {
+    content: '';
+    position: absolute;
+    display: inline-block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../imgs/line.png');
+    transform: scaleX(-1);
+}
+
+.visualizer-wrapper #visualizer .info-wrapper p {
+    position: relative;
+    padding: 0;
+    padding-left: 20px;
+    padding-right: 100px;
+    text-align: left;
+    color: black;
+    word-wrap: break-word;
+    
+    line-height: 25px;
+    z-index: 1;
+}
+
+.visualizer-wrapper #visualizer .info-wrapper p::before {
+    content: '';
+    position: absolute;
+    display: inline-block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../imgs/line.png');
+    transform: scaleX(-1);
+    z-index: -1;
+}
+
+.visualizer-wrapper .exit-button {
+    cursor: pointer;
+    position: absolute;
+    top: 30px;
+    left: calc(100% - 80px);
+    width: 50px;
+    height: 50px;
+    border: 3px solid brown;
+    border-radius: 3px;
+    z-index: 3;
+
+    transition: 0.2s all;
+}
+
+.visualizer-wrapper .exit-button::before, .visualizer-wrapper .exit-button::after {
+    content: '';
+    position: absolute;
+    display: inline-block;
+    left: 50%;
+    width: 20px;
+    height: 5px;
+    background-color: brown;
+    transform: translate(-50%, -50%);
+    border-radius: 4px;
+}
+
+.visualizer-wrapper .exit-button::before {
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.visualizer-wrapper .exit-button::after {
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.visualizer-wrapper .exit-button:hover {
+    background-color: brown;
+}
+
+.visualizer-wrapper .exit-button:hover::before, .visualizer-wrapper .exit-button:hover::after {
+    background-color: white;
+}

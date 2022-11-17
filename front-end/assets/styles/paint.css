@@ -4,6 +4,7 @@
     width: 1200px;
     height: 600px;
     flex-direction: column;
+    margin: 0 auto;
 }
 
 .panel-wrapper .options-wrapper, .panel-wrapper .colors-wrapper, #canvas-wrapper {
@@ -32,6 +33,7 @@
     left: 0;
     width: 100%;
     height: 100%;
+    border-radius: 10px;
 }
 
 .panel-wrapper .separator {
