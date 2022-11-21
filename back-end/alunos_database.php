@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    if (session_status() !== PHP_SESSION_ACTIVE) session_start();
 
     require_once 'aluno.php';
     require_once 'database.php';
@@ -176,8 +176,8 @@
             $this->localPath = $local_path;
 
             if (
-                isset($_SESSION['fail-time']) && 
-                time() - $_SESSION['fail-time'] < AlunosDatabase::FAIL_ALLOW_TIME
+                isset($_SESSION['db-fail-time']) && 
+                time() - $_SESSION['db-fail-time'] < AlunosDatabase::FAIL_ALLOW_TIME
             )
             {
                 $this->database = new AlunosCVDatabase($local_path);
@@ -188,17 +188,17 @@
                 {
                     $this->database = new AlunosSQLDatabase($hostname, $username, $password, $local_path);
                     
-                    if (isset($_SESSION['fail-time']))
+                    if (isset($_SESSION['db-fail-time']))
                     {
                         $this->sincronizarBancos();
                     }
 
-                    unset($_SESSION['fail-time']);
+                    unset($_SESSION['db-fail-time']);
                 }
                 catch (mysqli_sql_exception $ignored)
                 {
                     $this->database = new AlunosCVDatabase($local_path);
-                    $_SESSION['fail-time'] = time();
+                    $_SESSION['db-fail-time'] = time();
                 }
             }
         }

@@ -8,6 +8,7 @@
     background-color: white;
     scroll-margin-top: 200px;
     overflow: hidden;
+    margin: auto;
 }
 
 #galeria .click-message {

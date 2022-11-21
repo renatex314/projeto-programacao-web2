@@ -1,3 +1,20 @@
+<?php
+    function gerarNomeClasse($nomePagina) {
+        $paginaAtualIndice = $_SESSION['pagina_indice'];
+        $paginaIndice = array_search($nomePagina, PAGINAS_NOMES) + 1;
+
+        if ($paginaIndice < $paginaAtualIndice)
+        {
+            return 'selected';
+        }
+
+        if ($paginaIndice == $paginaAtualIndice)
+        {
+            return 'present';
+        }
+    }
+?>
+
 <!DOCTYPE html>
 
 <html lang="pt-br">
@@ -18,17 +35,28 @@
                 </a>
                 <div class="menu" >
                     <ul class="opcoes">
-                        <li class="item">
-                            <a class="link" href="#desenho">Desenhe suas férias</a>
+                        <li class="item <?php echo gerarNomeClasse('desenho');?>">
+                            <a class="link" href="?pagina=1">Desenhe suas férias</a>
                         </li>
-                        <li class="item">
-                            <a class="link" href="#conte-ferias">Conte suas Ferias</a>
+                        <div class="conector <?php echo gerarNomeClasse('desenho');?>"></div>
+                        <li class="item <?php echo gerarNomeClasse('conte');?>">
+                            <a class="link" href="?pagina=1">Conte suas Ferias</a>
                         </li>
-                        <li class="item">
-                            <a class="link" href="#galeria">Galeria</a>
+                        <div class="conector <?php echo gerarNomeClasse('conte');?>"></div>
+                        <li class="item <?php echo gerarNomeClasse('envio');?>">
+                            <a class="link" href="?pagina=1">Enviar</a>
                         </li>
+                        <div class="separator"></div>
                         <li class="item">
-                            <a class="link" href="#sobre">Sobre nós</a>
+                            <a class="botao" href="?pagina=5">Galeria</a>
+                        </li>
+                        <div class="separador-pequeno invisivel"></div>
+                        <li class="item">
+                            <a class="botao" href="?pagina=6">Sobre nós</a>
+                        </li>
+                        <div class="separador-pequeno invisivel"></div>
+                        <li class="item">
+                            <a class="botao" href="?pagina=7">Administração</a>
                         </li>
                     </ul>
                 </div>

@@ -3,6 +3,7 @@
 </div>
 
 <div id="paint-wrapper">
+    <div id="canvas-wrapper"></div>    
     <div class="panel-wrapper">
         <div class="options-wrapper">
             <ul class="options-list">
@@ -13,7 +14,7 @@
                     <img src="assets/icons/eraser.png">
                 </li>
                 <li class="slider">
-                <input id="slider" type="range" min="5" max="80"> 
+                    <input id="slider" type="range" min="5" max="80"> 
                 </li>
                 <li>
                     <div id="visualizer" class="slider-visualizer" style="--pencil-size: 80px"></div>
@@ -39,7 +40,6 @@
             </div>
         </div>
     </div>
-    <div id="canvas-wrapper"></div>
 </div>
 
 
@@ -49,3 +49,13 @@
 <script src="assets/scripts/paintCanvas.js"></script>
 <script src="assets/scripts/paintOptions.js"></script>
 <script src="assets/scripts/paint.js"></script>
+
+<script>
+    let paint = new Paint(document.querySelector('#paint-wrapper'));
+
+    definirFuncaoPreRedirecionamento(funcaoRedirecionar => paint.exportarImagem(blob => {
+        adicionarDadoRedirecionamento('desenho', blob);
+
+        funcaoRedirecionar();
+    }));
+</script>

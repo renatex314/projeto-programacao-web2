@@ -1,0 +1,10 @@
+.galeria.botao {
+    background-color: crimson;
+    color: white;
+    font-weight: bold;
+    margin-top: 100px;
+}
+
+.galeria.botao:hover {
+    transform: scale(1.2);    
+}

@@ -72,6 +72,7 @@ class Slideshow {
             imgSrc: imgSrc,
             text: text
         });
+        this._currIndex = this._imgsList.length - 1;
 
         this._updateImg();
     }

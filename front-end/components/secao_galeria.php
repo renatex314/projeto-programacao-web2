@@ -1,4 +1,4 @@
-<div id="galeria" class="espacamento-superior">
+<div id="galeria">
     <div id="prev-button" class="button"></div>
     <div id="next-button" class="button"></div>
     <div id="previous-img">
@@ -37,3 +37,22 @@
 
 <script src="assets/scripts/galeria.js"></script>
 <script src="assets/scripts/visualizer.js"></script>
+
+<script>
+    let slideshow = new Slideshow(document.querySelector('#galeria'));
+    let visualizer = new Visualizer(document.querySelector('.visualizer-wrapper'));
+
+    obterListaAlunos().then(lista => {
+        lista.forEach(aluno => slideshow.addImg(aluno.nome, aluno.desenhoURL));
+        slideshow.setOnClickListener(indice => {
+            visualizer.atualizarNome(lista[indice].nome);
+            visualizer.atualizarIdade(lista[indice].idade);
+            visualizer.atualizarImagem(lista[indice].desenhoURL);
+
+            obterTextoAluno(lista[indice].textoURL)
+            .then(texto => visualizer.atualizarTexto(texto));
+
+            visualizer.exibir();
+        });
+    });
+</script>

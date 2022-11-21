@@ -1,12 +1,13 @@
 .cadastro {
     display: flex;
     width: 1100px;
-    height: 260px;
+    height: 450px;
     flex-direction: column;
     background-color: white;
     border: 5px solid brown;
     border-radius: 10px;
     padding: 20px;
+    margin-top: 100px;
     box-sizing: content-box;
 }
 
@@ -17,7 +18,7 @@
 .cadastro .titulo {
     text-align: left;
     color: brown;
-    font-size: 20px;
+    font-size: 30px;
     font-weight: bold;
     margin-bottom: 10px;
 }
@@ -36,13 +37,14 @@
 .cadastro .data-section label {
     color: #000000CC;
     margin-left: 3px;
+    font-size: 20px;
 }
 
 .cadastro .data-section input {
     padding: 8px 13px;
     border: 1px solid #00000033;
     border-radius: 3px;
-    font-size: 15px;
+    font-size: 20px;
     outline: none;
 }
 
@@ -58,6 +60,7 @@
     box-sizing: content-box;
     border-radius: 3px;
     border: 1px solid #00000033;
+    font-size: 20px;
     font-weight: bold;
     text-transform: uppercase;
     transition: 0.2s all;

@@ -10,30 +10,30 @@
             $this->pathGlobal = $pathGlobal;
         }
 
-        function salvarTexto($enderecoTexto, $idAluno)
+        function salvarTexto($conteudoTexto, $idAluno)
         {
             $nomeArquivo = $this->gerarNomeArquivo(AlunosArquivos::PASTA_TEXTOS, $idAluno, ".txt");
             $enderecoArquivo = AlunosArquivos::PASTA_TEXTOS . $nomeArquivo;
 
-            move_uploaded_file(
-                $enderecoTexto,
-                $this->pathLocal . $enderecoArquivo
-            );
+            $this->salvarConteudo($this->pathLocal . $enderecoArquivo, $conteudoTexto);
 
             return $enderecoArquivo;
         }
 
-        function salvarDesenho($enderecoDesenho, $idAluno)
+        function salvarDesenho($conteudoDesenho, $idAluno)
         {
             $nomeArquivo = $this->gerarNomeArquivo(AlunosArquivos::PASTA_DESENHOS, $idAluno, ".png");
             $enderecoArquivo = AlunosArquivos::PASTA_DESENHOS . $nomeArquivo;
 
-            move_uploaded_file(
-                $enderecoDesenho,
-                $this->pathLocal . $enderecoArquivo
-            );
+            $this->salvarConteudo($this->pathLocal . $enderecoArquivo, $conteudoDesenho);
 
             return $enderecoArquivo;
+        }
+
+        private function salvarConteudo($enderecoArquivo, $conteudo) {
+            $arquivo = fopen($enderecoArquivo, 'w');
+            fwrite($arquivo, $conteudo);
+            fclose($arquivo);
         }
 
         function gerarNomeArquivo($pasta, $idAluno, $extensao)
