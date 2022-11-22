@@ -1,0 +1,96 @@
+.login-wrapper {
+    background-color: white;
+    padding: 40px 80px;
+    border: 5px solid brown;
+    border-radius: 5px;
+}
+
+.login-wrapper label {
+    display: block;
+    text-align: left;
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: brown;
+}
+
+.login-wrapper input[type=password] {
+    display: block;
+    padding: 10px;
+    font-size: 15px;
+    border: 2px solid brown;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    outline: none;
+}
+
+.login-wrapper input[type=submit] {
+    font-size: 20px;
+    border-color: brown;
+    color: brown;
+    background-color: transparent;
+    font-family: 'Bubblegum Sans', cursive;
+}
+
+.login-wrapper input[type=submit]:hover {
+    background-color: brown;
+    color: white;
+}
+
+.administracao-wrapper {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    margin: 30px 0;
+}
+
+.administracao-texto {
+    color: black;
+    text-align: left;
+}
+
+.lista-alunos {
+    list-style-type: none;
+}
+
+.lista-alunos li {
+    cursor: pointer;
+    display: flex;
+    width: 800px;
+    justify-content: left;
+    align-items: center;
+    border: 1px solid #00000033;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 3px 0;
+    transition: 0.1s all;
+}
+
+.lista-alunos li:hover {
+    background-color: brown;
+}
+
+.lista-alunos li:hover #nome-aluno {
+    color: white;
+}
+
+.lista-alunos li:hover img {
+    filter: invert();
+}
+
+.lista-alunos #nome-aluno {
+    color: black;
+    margin-right: auto;
+}
+
+.lista-alunos img {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    margin: 15px;
+    transition: 0.2s all;
+}
+
+.lista-alunos img:hover {
+    transform: scale(1.3);
+}

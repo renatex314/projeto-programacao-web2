@@ -7,7 +7,7 @@
     class AlunosCVDatabase 
     {
         private const ARQUIVO_CV = 'alunos.csv';
-        private const HEADERS = array('id', 'nome', 'idade', 'texto_url', 'desenho_url');
+        private const HEADERS = array('id', 'nome', 'idade', 'turma', 'texto_url', 'desenho_url');
         private $arquivoEndereco;
 
         function __construct($localPath)
@@ -22,6 +22,7 @@
                 $this->obterNovoID(),
                 $aluno->getNome(),
                 $aluno->getIdade(),
+                $aluno->getTurma(),
                 $aluno->getTextoURL(),
                 $aluno->getDesenhoURL()
             );
@@ -64,12 +65,37 @@
                     $dadosAluno[0],
                     $dadosAluno[1],
                     $dadosAluno[2],
-                    $dadosAluno[4],
-                    $dadosAluno[3]
+                    $dadosAluno[3],
+                    $dadosAluno[5],
+                    $dadosAluno[4]
                 ));
             }
 
             return $alunos;
+        }
+
+        function removerAluno($id)
+        {
+            $arquivo = fopen($this->arquivoEndereco, 'r+');
+            for ($i = 0; $i < 2; $i++) fgets($arquivo);
+
+            $linhaRemover = '';
+            while ($linha = fgets($arquivo))
+            {
+                $idAluno = intval(explode(',', $linha)[0]);
+
+                if ($idAluno === $id)
+                {
+                    $linhaRemover = $linha;
+                    break;
+                }
+            }
+
+            fclose($arquivo);
+
+            $arquivoTexto = file_get_contents($this->arquivoEndereco);
+            $arquivoTexto = str_replace($linhaRemover, '', $arquivoTexto);
+            file_put_contents($this->arquivoEndereco, $arquivoTexto);
         }
 
         function limparDatabase()
@@ -115,6 +141,7 @@
             $alunos->addColumn(new Column('id', TIPO_NUMERO));
             $alunos->addColumn(new Column('nome', TIPO_TEXTO));
             $alunos->addColumn(new Column('idade', TIPO_NUMERO));
+            $alunos->addColumn(new Column('turma', TIPO_TEXTO));
             $alunos->addColumn(new Column('texto_url', TIPO_TEXTO));
             $alunos->addColumn(new Column('desenho_url', TIPO_TEXTO));
 
@@ -131,6 +158,9 @@
                 parent::getColumn('alunos', 'idade'), $aluno->getIdade()
             );
             $row->addColumnData(
+                parent::getColumn('alunos', 'turma'), $aluno->getTurma()
+            );
+            $row->addColumnData(
                 parent::getColumn('alunos', 'texto_url'), $aluno->getTextoURL()
             );
             $row->addColumnData(
@@ -138,6 +168,11 @@
             );
             
             return parent::pushRow('alunos', $row);
+        }
+
+        function removerAluno($id)
+        {
+            parent::removeRow('alunos', 'id', $id);
         }
 
         function obterListaAlunos()
@@ -150,6 +185,7 @@
                     $row->getColumnData('id'),
                     $row->getColumnData('nome'),
                     $row->getColumnData('idade'),
+                    $row->getColumnData('turma'),
                     $row->getColumnData('desenho_url'),
                     $row->getColumnData('texto_url')
                 );
@@ -211,6 +247,23 @@
         function obterListaAlunos()
         {
             return $this->database->obterListaAlunos();
+        }
+
+        function obterAluno($id)
+        {
+            foreach ($this->database->obterListaAlunos() as $aluno)
+            {
+                if ($aluno->getId() === $id) {
+                    return $aluno;
+                }
+            }
+
+            return null;
+        }
+
+        function removerAluno($id)
+        {
+            $this->database->removerAluno($id);
         }
 
         function obterNovoID()

@@ -39,9 +39,11 @@ p {
     position: relative;
     text-align: center;
     height: 100vh;
+    padding-top: 120px;
 }
 
 .cabecalho {
+    position: fixed;
     background-color: white;
     top: 0;
     left: 0;

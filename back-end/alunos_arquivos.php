@@ -10,6 +10,12 @@
             $this->pathGlobal = $pathGlobal;
         }
 
+        function excluirArquivosAluno($enderecoTexto, $enderecoDesenho)
+        {
+            unlink($this->pathLocal . $enderecoTexto);
+            unlink($this->pathLocal . $enderecoDesenho);
+        }
+
         function salvarTexto($conteudoTexto, $idAluno)
         {
             $nomeArquivo = $this->gerarNomeArquivo(AlunosArquivos::PASTA_TEXTOS, $idAluno, ".txt");

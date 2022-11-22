@@ -7,6 +7,7 @@ class Visualizer {
         this._nomeView = this._visualizerWrapper.querySelector('#visualizer-nome');
         this._idadeView = this._visualizerWrapper.querySelector('#visualizer-idade');
         this._textoView = this._visualizerWrapper.querySelector('#visualizer-texto');
+        this._turmaView = this._visualizerWrapper.querySelector('#visualizer-turma');
         this._adicionarListeners();
     }
 
@@ -24,6 +25,10 @@ class Visualizer {
 
     atualizarIdade(idade) {
         this._idadeView.textContent = `${idade} anos`;
+    }
+
+    atualizarTurma(turma) {
+        this._turmaView.textContent = `turma: ${turma}`;
     }
 
     atualizarTexto(texto) {

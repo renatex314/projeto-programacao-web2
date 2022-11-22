@@ -22,6 +22,7 @@
             <p><br></p>
             <p id="visualizer-nome"></p>
             <p id="visualizer-idade"></p>
+            <p id="visualizer-turma"></p>
             <p><br></p>
             <p>minhas férias:</p>
             <p><br></p>
@@ -47,6 +48,7 @@
         slideshow.setOnClickListener(indice => {
             visualizer.atualizarNome(lista[indice].nome);
             visualizer.atualizarIdade(lista[indice].idade);
+            visualizer.atualizarTurma(lista[indice].turma);
             visualizer.atualizarImagem(lista[indice].desenhoURL);
 
             obterTextoAluno(lista[indice].textoURL)

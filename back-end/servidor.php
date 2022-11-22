@@ -14,6 +14,7 @@
         $novoID = $alunosDatabase->obterNovoID();
         $nome = $_SESSION['nome'];
         $idade = $_SESSION['idade'];
+        $turma = $_SESSION['turma'];
         $textoConteudo = $_SESSION['texto'];
         $desenhoConteudo = $_SESSION['desenho'];
 
@@ -24,6 +25,7 @@
             $novoID,
             $nome,
             $idade,
+            $turma,
             $desenhoURL,
             $textoURL
         ));
@@ -31,8 +33,21 @@
         unset($_SESSION['nome']);
         unset($_SESSION['idade']);
         unset($_SESSION['texto']);
+        unset($_SESSION['turma']);
         unset($_SESSION['desenho']);
         unset($_SESSION['cadastro']);
+    }
+    else if (isset($_SESSION['remover_id']))
+    {
+        $id = intval($_SESSION['remover_id']);
+        $aluno = $alunosDatabase->obterAluno($id);
+        $alunosArquivos->excluirArquivosAluno(
+            $aluno->getTextoURL(),
+            $aluno->getDesenhoURL()
+        );
+        $alunosDatabase->removerAluno($id);
+
+        unset($_SESSION['remover_id']);
     }
     else
     {

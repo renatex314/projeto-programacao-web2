@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS alunos(
     id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(100) NOT NULL,
     idade INT NOT NULL,
+    turma VARCHAR(200),
     texto_url VARCHAR(200),
     desenho_url VARCHAR(200)
 );

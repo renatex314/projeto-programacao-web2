@@ -1,13 +1,14 @@
 <?php
     class Aluno implements JsonSerializable
     {
-        private $id, $nome, $idade, $desenhoURL, $textoURL;
+        private $id, $nome, $idade, $turma, $desenhoURL, $textoURL;
 
-        function __construct($id, $nome, $idade, $desenhoURL, $textoURL)
+        function __construct($id, $nome, $idade, $turma, $desenhoURL, $textoURL)
         {
             $this->id = $id;
             $this->nome = $nome;
             $this->idade = $idade;
+            $this->turma = $turma;
             $this->desenhoURL = $desenhoURL;
             $this->textoURL = $textoURL;
         }
@@ -25,6 +26,11 @@
         function setIdade($idade)
         {
             $this->idade = $idade;
+        }
+
+        function setTurma($turma)
+        {
+            $this->turma = $turma;
         }
 
         function setDesenhoURL($desenhoURL)
@@ -52,6 +58,11 @@
             return $this->idade;
         }
 
+        function getTurma()
+        {
+            return $this->turma;
+        }
+
         function getDesenhoURL()
         {
             return $this->desenhoURL;
@@ -74,6 +85,7 @@
             $serializableObj['id'] = $this->getId();
             $serializableObj['nome'] = $this->getNome();
             $serializableObj['idade'] = $this->getIdade();
+            $serializableObj['turma'] = $this->getTurma();
             $serializableObj['textoURL'] = $this->getTextoURL();
             $serializableObj['desenhoURL'] = $this->getDesenhoURL();
 

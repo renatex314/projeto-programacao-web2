@@ -14,6 +14,13 @@
         $_SESSION['pagina'] = PAGINAS_NOMES[$_SESSION['pagina_indice'] - 1];
     }
 
+    if (isset($_POST['remover_id']))
+    {
+        $_SESSION['remover_id'] = $_POST['remover_id'];
+        include_once URL_SERVIDOR;
+        header('?pagina=7');
+    }
+
     if (!isset($_SESSION['pagina']))
     {
         atualizarPaginaDados(1);
@@ -31,7 +38,6 @@
 
     if (isset($_POST['nome']))
     {
-        echo 'teste';
         $_SESSION['nome'] = $_POST['nome'];
         $_SESSION['idade'] = $_POST['idade'];
         $_SESSION['turma'] = $_POST['turma'];
