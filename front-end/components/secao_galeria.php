@@ -40,11 +40,16 @@
 <script src="assets/scripts/visualizer.js"></script>
 
 <script>
+    //instancia o carrossel de imagens
     let slideshow = new Slideshow(document.querySelector('#galeria'));
+    //instancia o visualizer dos dados dos alunos
     let visualizer = new Visualizer(document.querySelector('.visualizer-wrapper'));
 
+    //obtem a lista de alunos e preenche o carrossel com os dados de cada aluno
     obterListaAlunos().then(lista => {
+        //adiciona a imagem de cada aluno com o nome de cada um
         lista.forEach(aluno => slideshow.addImg(aluno.nome, aluno.desenhoURL));
+        //configura a ação a ser realizada pelo carrossel assim que ele for clicado
         slideshow.setOnClickListener(indice => {
             visualizer.atualizarNome(lista[indice].nome);
             visualizer.atualizarIdade(lista[indice].idade);
@@ -54,6 +59,7 @@
             obterTextoAluno(lista[indice].textoURL)
             .then(texto => visualizer.atualizarTexto(texto));
 
+            //exibe os dados do aluno
             visualizer.exibir();
         });
     });

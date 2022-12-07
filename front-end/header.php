@@ -1,4 +1,5 @@
 <?php
+    //função que retorna o nome da classe css usada no indicador de nível do cabeçalho
     function gerarNomeClasse($nomePagina) {
         $paginaAtualIndice = $_SESSION['pagina_indice'];
         $paginaIndice = array_search($nomePagina, PAGINAS_NOMES) + 1;
@@ -21,10 +22,11 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="assets/favicon.png">
         <link rel="stylesheet" href="assets/styles/pagina.css">
-        <link rel="stylesheet" href="assets/styles/reponsive.css">
+        <link rel="stylesheet" href="assets/styles/responsividade.css">
         <script src="assets/scripts/requisicoes.js"></script>
-        <title>Paint</title>
+        <title>AstroEduca</title>
     </head>
 
     <body>

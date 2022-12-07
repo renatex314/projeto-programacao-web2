@@ -1,29 +1,37 @@
 <?php
-    define('SENHA_ADMINISTRACAO', 'acessoadministrador123');
+    //constante que armazena a senha necessária para entrar na área de administração
+    //OBS: a senha atual é 'acessoadministrador123'
+    define('SENHA_ADMINISTRACAO', '0bd5010bde0d9ac0e7ca15fc5dc84b27');
 
+    //função que verifica se a senha digitada é igual a senha de acesso
     function senhaEstaCorreta()
     {
         return strcasecmp($_SESSION['senha_administracao'], SENHA_ADMINISTRACAO) === 0;
     }
 
+    //verifica se o usuário digitou uma senha para acessar a área de administração
     if (isset($_POST['senha_administracao']))
     {
-        $_SESSION['senha_administracao'] = $_POST['senha_administracao'];
+        //criptografa a senha
+        $_SESSION['senha_administracao'] = md5($_POST['senha_administracao']);
     }
 ?>
 
+<?php //exibe uma mensagem caso a senha tenha sido digitada incorretamente ?>
 <?php if (isset($_SESSION['senha_administracao']) && !senhaEstaCorreta()) { ?>
     <p class="erro-aviso">Senha incorreta !<br>tente novamente:</p>
 <?php } ?>
 
+<?php //exibe o form para realizar o acesso caso o usuário ainda não tenha feito?>
 <?php if (!isset($_SESSION['senha_administracao']) || !senhaEstaCorreta()) { ?>
     <form action="?pagina=7" method="POST" class="login-wrapper">
         <label for="senha">Senha:</label>
         <input id="senha" name="senha_administracao" type="password" placeholder="Digite a senha de acesso...">
         <input class="botao" type="submit" value="Entrar">
-    </div>
+    </form>
 <?php } ?>
 
+<?php //exibe a área de administração caso a senha esteja correta ?>
 <?php if (isset($_SESSION['senha_administracao']) && senhaEstaCorreta()) {?>
 
     <div class="administracao-wrapper">
@@ -53,10 +61,14 @@
     <link rel="stylesheet" href="assets/styles/visualizer.css">
     <script src="assets/scripts/visualizer.js"></script>
     <script>
+        //cria o objeto visualizer para poder visualizar os dados do aluno
         let visualizer = new Visualizer(document.querySelector('.visualizer-wrapper'));
+        //armazena o elemento referente a lista de alunos
         window.alunosUL = document.querySelector('.lista-alunos');
+        //define a variável responsável por armazenar a lista de alunos no banco de dados.
         window.listaAlunos = null;
 
+        //função que exibe os dados do aluno por meio do visualizer
         function visualizarAluno(indice) {
             visualizer.atualizarNome(window.listaAlunos[indice].nome);
             visualizer.atualizarIdade(window.listaAlunos[indice].idade);
@@ -64,39 +76,43 @@
             visualizer.atualizarImagem(window.listaAlunos[indice].desenhoURL);
 
             obterTextoAluno(window.listaAlunos[indice].textoURL)
-            .then(texto => visualizer.atualizarTexto(texto));
-
-            visualizer.exibir();
+            .then(texto => {
+                visualizer.atualizarTexto(texto);
+                visualizer.exibir();
+            });
         }
 
-        function criarLIAluno(alunoObj, i) {
+        //função que cria um elemento LI para ser colocado no elemento referente a lista de alunos
+        function criarLIAluno(alunoObj, indiceAluno) {
             let li = document.createElement('li');
             li.id = alunoObj.id;
-
+  
             li.innerHTML = `
                 <p id="nome-aluno">${alunoObj.nome}</p>
                 <img 
                     id="botao-visualizar" 
                     src="assets/imgs/eye.png" 
                     alt="ícone de visualização"
-                    onclick="(() => visualizarAluno(${i}))()"
+                    onclick="visualizarAluno(${indiceAluno})"
                 >
                 <img 
                     id="botao-excluir" 
                     src="assets/imgs/trash.png" 
                     alt="ícone de excluir"
-                    onclick="(() => excluirAluno(${alunoObj.id}))()"
+                    onclick="excluirAluno(${alunoObj.id})"
                 >
             `;
 
             return li;
         }
 
+        //função que remove um aluno cadastrado
         function excluirAluno(id) {
             adicionarDadoRedirecionamento('remover_id', id);
             redirecionarEnvio('?pagina=7');
         }
 
+        //função que obtem os dados de um aluno
         function obterAluno(idAluno) {
             let listaAlunos = window.listaAlunos;
 
@@ -109,6 +125,7 @@
             return null;
         }
 
+        //obtem a lista de alunos cadastrados e os insere no elemento UL da lista de alunos
         obterListaAlunos()
         .then(lista => {
             window.listaAlunos = lista;

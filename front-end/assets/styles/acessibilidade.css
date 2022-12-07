@@ -1,0 +1,162 @@
+.acessibilidade-wrapper #menu-toggle {
+    display: inline-block;
+    width: 0px;
+    height: 0px;
+    opacity: 0;
+    font-size: 0px;
+}
+
+.acessibilidade-wrapper .botao-menu-acessibilidade {
+    cursor: pointer;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    filter: invert();
+    background-color: rgb(35, 235, 195);
+    border-radius: 5px;
+    background-image: url(../imgs/acessibility.png);
+    background-size: 80%;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: 0.2s all;
+}
+
+.acessibilidade-wrapper .botao-menu-acessibilidade:hover {
+    background-color: rgb(65, 255, 225);
+    transform: scale(1.2);
+}
+
+.acessibilidade-wrapper #menu-toggle:checked ~ .botao-menu-acessibilidade {
+    display: none;
+}
+
+.acessibilidade-wrapper .menu-wrapper-acessibilidade {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 290px;
+    padding-top: 50px;
+    background-color: crimson;
+    border-radius: 5px;
+    transition: 0.2s all;
+    overflow: hidden;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.acessibilidade-wrapper #menu-toggle:checked ~ .menu-wrapper-acessibilidade {
+    pointer-events: unset;
+    opacity: 1;
+}
+
+.acessibilidade-wrapper .botao-fechar {
+    cursor: pointer;
+    display: inline-block;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    right: 10px;
+    top: 10px;
+}
+
+.botao-fechar::before, .botao-fechar::after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    background-color: white;
+    height: 70%;
+    width: 4px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+}
+
+.botao-fechar::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.botao-fechar::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.acessibilidade-wrapper .opcoes-wrapper .opcao-wrapper {
+    display: inline-block;
+    margin: 0 5px;
+    margin-bottom: 20px;
+}
+
+.acessibilidade-wrapper .opcoes-wrapper input {
+    display: inline-block;
+    width: 0px;
+    height: 0px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.acessibilidade-wrapper .opcoes-wrapper label {
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    border: 4px solid white;
+    border-radius: 10px;
+    background-position: center;
+    background-size: 80%;
+    background-repeat: no-repeat;
+    transition: 0.2s all;
+}
+
+.acessibilidade-wrapper .opcoes-wrapper label:hover {
+    transform: scale(1.1);
+}
+
+.acessibilidade-wrapper .opcoes-wrapper label::after {
+    content: var(--texto);
+    position: absolute;
+    color: white;
+    display: inline-block;
+    width: 100%;
+    top: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.acessibilidade-wrapper .opcoes-wrapper input:checked ~ label {
+    border-color: black;
+    background-color: black;
+    filter: invert();
+}
+
+.acessibilidade-wrapper .opcoes-wrapper input:checked ~ label::after {
+    color: black;
+}
+
+.acessibilidade-wrapper .botao-enviar {
+    color: white;
+    font-size: 25px;
+    border: none;
+    margin: 30px 0;
+    padding: 10px 50px;
+    font-family: 'Bubblegum Sans', cursive;
+    background-color: rgb(250, 60, 100);
+    border: 2px solid crimson;
+}
+
+.acessibilidade-wrapper .botao-enviar:hover {
+    color: white;
+    background-color:rgb(250, 60, 100);
+    transform: scale(1.1);
+}
+
+#icone-libras {
+    background-image: url('../imgs/libras.png');   
+}
+
+#icone-maior {
+    background-image: url('../imgs/fonte.png');
+    background-size: 50%;
+}

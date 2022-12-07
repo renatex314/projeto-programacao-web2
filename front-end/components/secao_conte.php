@@ -11,8 +11,10 @@
 
 <script src="assets/scripts/textarea.js"></script>
 <script>
+    //elemento de digitação do texto
     let texto = document.getElementById('texto');
 
+    //define o dado do texto para ser enviado para o servidor
     definirFuncaoPreRedirecionamento(funcaoRedirecionar => {
         adicionarDadoRedirecionamento('texto', new Blob([texto.value]));
 

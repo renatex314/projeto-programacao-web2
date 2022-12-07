@@ -1,0 +1,76 @@
+.link, .botao {
+    font-size: 30px;
+}
+
+#previous-img p, #current-img p {
+    font-size: 40px;
+}
+
+.sobre-wrapper {
+    margin-top: 30px;
+    font-size: 40px;
+}
+
+.link-wrapper {
+    width: 600px;
+}
+
+.contatos-texto {
+    font-size: 30px;
+}
+
+.texto-wrapper {
+    font-size: 40px;
+}
+
+.login-wrapper label {
+    font-size: 40px;
+}
+
+.login-wrapper input[type=password] {
+    font-size: 20px;
+}
+
+.login-wrapper input[type=submit] {
+    font-size: 30px;
+}
+
+p {
+    font-size: 30px;
+}
+
+.mensagem-container {
+    font-size: 40px;
+}
+
+.texto {
+    font-size: 40px;
+}
+
+.cadastro .titulo {
+    font-size: 40px;
+}
+
+.cadastro .data-section label {
+    font-size: 30px;
+}
+
+.cadastro .data-section input {
+    font-size: 30px;
+}
+
+.cadastro input[type=submit] {
+    font-size: 30px;
+}
+
+.cadastro {
+    height: 467px;
+}
+
+.card {
+    font-size: 40px;
+}
+
+#texto {
+    font-size: 24px;
+}

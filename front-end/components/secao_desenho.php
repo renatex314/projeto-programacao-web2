@@ -51,8 +51,10 @@
 <script src="assets/scripts/paint.js"></script>
 
 <script>
+    //instancia o elemento Paint
     let paint = new Paint(document.querySelector('#paint-wrapper'));
 
+    //define os dados do desenho para ser enviado para o servidor
     definirFuncaoPreRedirecionamento(funcaoRedirecionar => paint.exportarImagem(blob => {
         adicionarDadoRedirecionamento('desenho', blob);
 

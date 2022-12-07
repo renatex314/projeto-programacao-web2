@@ -2,9 +2,19 @@
     background-color: crimson;
     color: white;
     font-weight: bold;
-    margin-top: 100px;
+}
+
+.galeria.botao.refazer {
+    background-color: green;
 }
 
 .galeria.botao:hover {
     transform: scale(1.2);    
+}
+
+.botoes-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 100px;
 }

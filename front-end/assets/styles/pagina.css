@@ -7,12 +7,13 @@
 }
 
 body {
+    position: relative;
     display: flex;
     flex-direction: column;
-    width: 100vw;
-    background-color: rgb(47, 63, 158);
+    width: 100%;
     font-family: 'Bubblegum Sans', cursive;
     overflow-x: hidden;
+    background-color: black;
 }
 
 p {
@@ -38,8 +39,22 @@ p {
     flex-direction: column;
     position: relative;
     text-align: center;
-    height: 100vh;
+    min-height: 100vh;
     padding-top: 120px;
+}
+
+.container::before {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../imgs/background.jpg');
+    background-size: cover;
+    opacity: 0.6;
+    z-index: -1;
 }
 
 .cabecalho {
@@ -145,7 +160,6 @@ p {
 	transition: all .3s ease-in-out;
     color: white;
     border-radius: 10px 0 10px 0;
-    border: 4px solid #2F3F9E;
 }
 
 .buttons-wrapper input:hover {

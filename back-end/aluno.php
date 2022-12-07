@@ -1,4 +1,11 @@
 <?php
+    //Classe que representa os dados de um aluno
+    /*
+        OBS: 
+            esta classe implementa a interface 
+            JsonSerializable para fácil conversão do 
+            objeto para o formato JSON
+    */
     class Aluno implements JsonSerializable
     {
         private $id, $nome, $idade, $turma, $desenhoURL, $textoURL;
@@ -73,12 +80,14 @@
             return $this->textoURL;
         }
 
+        //método que converte o endereço local dos arquivos para o endereço global
         function converterParaURLGlobal($alunosArquivos)
         {
             $this->setDesenhoURL($alunosArquivos->obterArquivoURL($this->getDesenhoURL()));
             $this->setTextoURL($alunosArquivos->obterArquivoURL($this->getTextoURL()));
         }
 
+        //método da interface JSONSerializable que realiza a conversão para JSON
         function jsonSerialize(): mixed
         {
             $serializableObj = array();
